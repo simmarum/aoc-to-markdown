@@ -7,12 +7,12 @@ with codecs.open('README.rst', encoding='utf-8') as f:
 
 setup(
     name='aoc-to-markdown',
-    version='0.2.3',
+    version='0.2.4',
     description='Parses Advent Of Code problem statement to markdown with option to also download the input while '
                 'keeping everything organised',
     long_description=long_description,
-    python_requires=">=3.*",
-    install_requires=['beautifulsoup4', 'requests'],
+    python_requires=">=3",
+    install_requires=['beautifulsoup4', 'requests', 'setuptools'],
     py_modules=['aoc_to_markdown'],
     entry_points={
         'console_scripts': ['aoc-to-markdown=aoc_to_markdown:main']
@@ -36,6 +36,11 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3 :: Only'
     ]
 )
