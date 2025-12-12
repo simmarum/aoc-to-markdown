@@ -88,6 +88,9 @@ def html_tags_to_markdown(tag, is_first_article):
         tag.unwrap()
     elif tag.name == 'article':
         pass
+    elif tag.name == 'br':
+        tag.insert_after('\n')
+        tag.unwrap()
     else:
         raise ValueError(f'Missing condition for tag: {tag.name}')
 
@@ -98,9 +101,22 @@ def get_markdown(year, day):
     articles = soup.body.main.findAll('article', recursive=False)
     content = ''
 
+    answer_values = []
+    answers = soup.body.main.findAll('p', recursive=False)
+    for answer in answers:
+        answer_str = answer.text
+        if 'Your puzzle answer was' in answer_str:
+            answer_values.append(answer_str)
     for i, article in enumerate(articles):
         html_tags_to_markdown(article, i == 0)
         content += ''.join([tag.string if tag.string else tag.text for tag in article.contents])
+        try:
+            if i == 0:
+                content += f'\n{answer_values[i]}\n\n'
+            else:
+                content += f'\n{answer_values[i]}\n'
+        except IndexError:
+            pass
 
     return content
 
